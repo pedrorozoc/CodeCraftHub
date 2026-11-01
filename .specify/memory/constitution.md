@@ -1,75 +1,84 @@
 <!--
-Sync Impact Report
-- Version change: template/unversioned → 1.0.0
-- Modified principles: none; initial constitution established.
-- Added sections: Core Principles, Technical Constraints, Development Workflow, Governance.
-- Removed sections: none.
-- Follow-up TODOs: none.
+Informe de impacto de sincronización
+- Cambio de versión: 1.0.0 → 1.1.0
+- Principios modificados: I. Simplicidad centrada en principiantes y II. REST primero con Spring Boot.
+- Secciones modificadas: Restricciones técnicas y Flujo de trabajo de desarrollo.
+- Secciones añadidas: ninguna.
+- Secciones eliminadas: ninguna.
+- TODO de seguimiento: ninguno.
 -->
-# CodeCraftHub Constitution
+# Constitución de CodeCraftHub
 
-## Core Principles
+## Principios fundamentales
 
-### I. Beginner-Centered Simplicity
-CodeCraftHub MUST favor small, readable components and direct control flow over abstractions
-that do not teach a REST API fundamental. Each feature MUST have a clear responsibility and
-documentation appropriate for a developer learning Spring Boot. New dependencies, layers, or
-patterns require a concrete learning or maintenance benefit. This keeps the application
-approachable and makes its API behavior easy to trace.
+### I. Simplicidad centrada en principiantes
+CodeCraftHub DEBE favorecer componentes pequeños, legibles y flujo de control directo en lugar de
+abstracciones que no enseñen un fundamento de API REST. Cada funcionalidad DEBE tener una
+responsabilidad clara y documentación en español apropiada para quien aprende Spring Boot. Las
+nuevas dependencias, capas o patrones requieren un beneficio concreto de aprendizaje o
+mantenimiento. Esto mantiene la aplicación accesible y facilita rastrear su comportamiento.
 
-### II. Spring Boot REST First
-The backend MUST be implemented in Java with Spring Boot and expose course capabilities through
-HTTP REST endpoints. Controllers MUST use resource-oriented routes, standard HTTP methods and
-status codes, validate request input, and return consistent JSON representations. API examples
-and tests MUST cover successful and invalid requests. The API is the primary learning artifact,
-so its behavior must be explicit and predictable.
+### II. REST primero con Spring Boot
+El backend DEBE implementarse en Java con Spring Boot y exponer las capacidades de cursos mediante
+endpoints HTTP REST. Los controladores DEBEN usar rutas orientadas a recursos, métodos y códigos
+de estado HTTP estándar, validar las solicitudes y devolver representaciones JSON consistentes.
+Los ejemplos de API y las pruebas DEBEN cubrir solicitudes válidas e inválidas. La API es el
+artefacto de aprendizaje principal, por lo que su comportamiento debe ser explícito y predecible.
 
-### III. File-Based JSON Is the System of Record
-Course data MUST be persisted to simple JSON files; no database, ORM, or external persistence
-service is permitted. A dedicated persistence boundary MUST load data safely at startup and
-write changes atomically enough to avoid malformed files under normal operation. Missing or
-invalid files MUST result in actionable errors or an intentionally initialized empty collection,
-never silent data loss. This preserves the intended focus on basic REST concepts and transparent
-storage.
+### III. JSON basado en archivos como fuente de datos
+Los datos de cursos DEBEN persistirse en archivos JSON simples; no se permite una base de datos,
+ORM ni servicio externo de persistencia. Un límite de persistencia dedicado DEBE cargar datos de
+forma segura al inicio y escribir cambios con suficiente atomicidad para evitar archivos mal
+formados durante la operación normal. Los archivos ausentes o inválidos DEBEN producir errores
+accionables o una colección vacía inicializada intencionalmente, nunca pérdida silenciosa de datos.
+Esto preserva el enfoque en REST básico y almacenamiento transparente.
 
-### IV. Course Model Integrity
-Every course MUST contain a non-blank name, a description, a target completion date, and exactly
-one current status: `NO_INICIADO`, `EN_PROGRESO`, or `COMPLETADO`. Requests and persisted data
-MUST be validated against these constraints before mutation. Any future representation intended
-for human display MAY translate the status labels but MUST retain an unambiguous machine value.
-Consistent data makes progress tracking reliable.
+### IV. Integridad del modelo de curso
+Cada curso DEBE contener un nombre no vacío, una descripción, una fecha objetivo de finalización y
+exactamente un estado actual: `NO_INICIADO`, `EN_PROGRESO` o `COMPLETADO`. Las solicitudes y los
+datos persistidos DEBEN validarse frente a estas restricciones antes de modificarse. Cualquier
+representación futura para personas PUEDE traducir las etiquetas de estado, pero DEBE conservar un
+valor inequívoco para la máquina. Los datos consistentes hacen confiable el seguimiento.
 
-### V. Scope and Privacy by Default
-The application MUST manage learning courses only. It MUST NOT include authentication, accounts,
-roles, permissions, or user administration unless this constitution is amended. Features outside
-course tracking require a documented learning objective and a justified scope change. Keeping a
-single-user, unauthenticated scope limits incidental complexity.
+### V. Alcance y privacidad por defecto
+La aplicación DEBE gestionar únicamente cursos de aprendizaje. NO DEBE incluir autenticación,
+cuentas, roles, permisos ni administración de usuarios salvo que esta constitución sea enmendada.
+Las funcionalidades fuera del seguimiento de cursos requieren un objetivo de aprendizaje
+documentado y un cambio de alcance justificado. Mantener un alcance de un solo usuario y sin
+autenticación limita la complejidad incidental.
 
-## Technical Constraints
+## Restricciones técnicas
 
-- Java and Spring Boot are mandatory for application code.
-- JSON files stored locally are the sole persistent source of course data.
-- The baseline API MUST support creating, listing, retrieving, updating, and deleting courses,
-  as well as updating a course's current status when that behavior is exposed separately.
-- Course endpoints MUST consistently use JSON request and response bodies except for responses
-  where HTTP semantics require no body.
-- Database migrations, authentication flows, and user-management endpoints are out of scope.
+- Java y Spring Boot son obligatorios para el código de la aplicación.
+- Los identificadores del código, como paquetes, clases, métodos, variables, endpoints y pruebas,
+  DEBEN escribirse en inglés.
+- La documentación del proyecto, descripciones de API, comentarios y Javadoc DEBEN escribirse en
+  español.
+- Los archivos JSON almacenados localmente son la única fuente persistente de datos de cursos.
+- La API base DEBE permitir crear, listar, obtener, actualizar y eliminar cursos, además de
+  actualizar el estado actual de un curso cuando dicho comportamiento se exponga por separado.
+- Los endpoints de cursos DEBEN usar cuerpos de solicitud y respuesta JSON de manera consistente,
+  salvo cuando la semántica HTTP requiera no incluir un cuerpo.
+- Las migraciones de bases de datos, flujos de autenticación y endpoints de gestión de usuarios
+  están fuera de alcance.
 
-## Development Workflow
+## Flujo de trabajo de desarrollo
 
-Each change MUST begin with a written specification of the learner-facing behavior before
-implementation. Work MUST include focused tests for validation, HTTP status behavior, and JSON
-file read/write behavior affected by the change. Code review or self-review MUST verify the
-course model, REST conventions, JSON persistence, and scope constraints. If a change increases
-complexity, its rationale and simpler alternatives MUST be documented in the plan or pull request.
+Cada cambio DEBE comenzar con una especificación escrita en español del comportamiento para quien
+aprende antes de su implementación. El trabajo DEBE incluir pruebas enfocadas en validación,
+comportamiento de códigos HTTP y lectura/escritura JSON afectados por el cambio. La revisión de
+código o autorrevisión DEBE verificar el modelo de curso, las convenciones REST, la persistencia
+JSON, las restricciones de alcance y el idioma aplicable. Si un cambio aumenta la complejidad, su
+justificación y alternativas más simples DEBEN documentarse en español en el plan o pull request.
 
-## Governance
+## Gobernanza
 
-This constitution supersedes conflicting project practices. Amendments MUST document the proposed
-rule change, its rationale, its compatibility impact, and any required migration of JSON files or
-API consumers. The version follows semantic versioning: MAJOR for incompatible governance changes,
-MINOR for new or materially expanded principles or sections, and PATCH for clarifications that do
-not change obligations. Every specification, plan, implementation review, and release review MUST
-check compliance; exceptions require an explicit, time-bounded amendment or recorded waiver.
+Esta constitución prevalece sobre las prácticas de proyecto que entren en conflicto. Las enmiendas
+DEBEN documentar el cambio de regla propuesto, su justificación, impacto de compatibilidad y toda
+migración requerida de archivos JSON o consumidores de API. La versión sigue versionado semántico:
+MAJOR para cambios de gobernanza incompatibles, MINOR para principios o secciones nuevos o
+materialmente ampliados y PATCH para aclaraciones sin cambio de obligaciones. Cada especificación,
+plan, revisión de implementación y revisión de lanzamiento DEBE comprobar el cumplimiento; las
+excepciones requieren una enmienda explícita con plazo definido o una dispensa registrada.
 
-**Version**: 1.0.0 | **Ratified**: 2026-11-01 | **Last Amended**: 2026-11-01
+**Versión**: 1.1.0 | **Ratificada**: 2026-11-01 | **Última enmienda**: 2026-11-01
