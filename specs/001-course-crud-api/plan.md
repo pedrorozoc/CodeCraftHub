@@ -8,7 +8,7 @@
 ## Resumen
 
 Crear una API REST educativa para crear, listar, obtener, actualizar y eliminar cursos. El servicio
-se implementará como una única aplicación Java 21 con Spring Boot 4.1.2. Persistirá una colección y
+se implementará como una única aplicación Java 21 con Spring Boot 3.4.5. Persistirá una colección y
 el siguiente identificador en `courses.json`, usando Jackson para serializar JSON y escritura a un
 archivo temporal seguida de movimiento al destino. El contrato HTTP conserva nombres snake_case y
 estados visibles exactamente `Not Started`, `In Progress` y `Completed`.
@@ -17,7 +17,7 @@ estados visibles exactamente `Not Started`, `In Progress` y `Completed`.
 
 **Lenguaje/versión**: Java 21 (LTS).
 
-**Dependencias principales**: Spring Boot 4.1.2; `spring-boot-starter-web`;
+**Dependencias principales**: Spring Boot 3.4.5; `spring-boot-starter-web`;
 `spring-boot-starter-validation`; Jackson, gestionado por Spring Boot; y
 `spring-boot-starter-test`.
 

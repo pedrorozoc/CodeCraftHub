@@ -1,0 +1,13 @@
+target/
+*.class
+*.jar
+.gradle/
+build/
+.DS_Store
+Thumbs.db
+*.tmp
+*.swp
+.vscode/
+.idea/
+courses.json
+courses.json.tmp
