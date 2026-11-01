@@ -14,6 +14,7 @@ import java.nio.file.Path;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.options;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
@@ -126,6 +127,15 @@ class CourseControllerIntegrationTest {
                 .andExpect(jsonPath("$.courses_by_status['Not Started']").value(0))
                 .andExpect(jsonPath("$.courses_by_status['In Progress']").value(0))
                 .andExpect(jsonPath("$.courses_by_status['Completed']").value(0));
+    }
+
+    @Test
+    void allowsCorsRequestsFromLocalDevelopmentServer() throws Exception {
+        mockMvc.perform(options("/api/courses")
+                        .header("Origin", "http://localhost:8000")
+                        .header("Access-Control-Request-Method", "POST"))
+                .andExpect(status().isOk())
+                .andExpect(header().string("Access-Control-Allow-Origin", "http://localhost:8000"));
     }
 
     private long createCourse() throws Exception {
