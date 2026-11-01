@@ -2,16 +2,18 @@
 
 ## Plataforma y dependencias
 
-**Decisión**: Usar Java 21 y Spring Boot 4.1.2 con Maven, `spring-boot-starter-web`,
+**Decisión**: Usar Java 21 y Spring Boot 3.4.5 con Maven, `spring-boot-starter-web`,
 `spring-boot-starter-validation` y `spring-boot-starter-test`.
 
-**Justificación**: Spring Boot 4.1.2 requiere como mínimo Java 17 y admite versiones hasta Java 27;
-Java 21 ofrece una línea LTS ampliamente disponible. El starter web proporciona la base MVC y
-conversión JSON; el starter de validación habilita validación declarativa de solicitudes.
+**Justificación**: Java 21 ofrece una línea LTS ampliamente disponible y Spring Boot 3.4.5 está
+disponible en el entorno de construcción sin requerir una descarga externa. El starter web
+proporciona la base MVC y conversión JSON; el starter de validación habilita validación declarativa
+de solicitudes.
 
-**Alternativas consideradas**: Java 17 también es compatible, pero Java 21 es la opción LTS más
-moderna. No se incorpora una biblioteca JSON adicional porque Jackson llega gestionado por Spring
-Boot y es el requisito de la funcionalidad.
+**Alternativas consideradas**: Spring Boot 4.1.2 se descartó porque las dependencias no estaban
+disponibles localmente y el entorno no podía acceder a Maven Central. Java 17 también es
+compatible, pero Java 21 es la opción LTS más moderna. No se incorpora una biblioteca JSON
+adicional porque Jackson llega gestionado por Spring Boot y es el requisito de la funcionalidad.
 
 **Fuentes**:
 

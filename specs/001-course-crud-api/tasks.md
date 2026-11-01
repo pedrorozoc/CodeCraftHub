@@ -32,8 +32,8 @@ separado tras completar la base común.
 
 **Propósito**: Inicializar el único proyecto Maven y la estructura de código prevista.
 
-- [ ] T001 Crear `pom.xml` con Java 21, Spring Boot 4.1.2, `spring-boot-starter-web`, `spring-boot-starter-validation` y `spring-boot-starter-test`.
-- [ ] T002 Crear `src/main/java/com/codecrafthub/CodeCraftHubApplication.java` y `src/main/resources/application.properties` con la aplicación Spring Boot y la ruta configurable de `courses.json`.
+- [X] T001 Crear `pom.xml` con Java 21, Spring Boot 3.4.5, `spring-boot-starter-web`, `spring-boot-starter-validation` y `spring-boot-starter-test`.
+- [X] T002 Crear `src/main/java/com/codecrafthub/CodeCraftHubApplication.java` y `src/main/resources/application.properties` con la aplicación Spring Boot y la ruta configurable de `courses.json`.
 
 ---
 
@@ -44,11 +44,11 @@ historias.
 
 **⚠️ CRÍTICO**: Ninguna historia puede empezar hasta completar esta fase.
 
-- [ ] T003 [P] Crear `src/main/java/com/codecrafthub/model/CourseStatus.java` con identificadores Java en inglés y mapeo Jackson exacto para `Not Started`, `In Progress` y `Completed`.
-- [ ] T004 Crear `src/main/java/com/codecrafthub/model/Course.java` con `id`, `name`, `description`, `targetDate`, `status` y `createdAt`; aplicar anotaciones Jackson para `target_date` y `created_at`, y validar literalmente: «nombre y descripción no pueden estar vacíos ni contener solo espacios», «fecha de calendario en formato `YYYY-MM-DD`» y estado «exactamente `Not Started`, `In Progress` o `Completed`».
-- [ ] T005 Crear `src/main/java/com/codecrafthub/exception/CourseNotFoundException.java`, `src/main/java/com/codecrafthub/exception/StorageException.java` y `src/main/java/com/codecrafthub/exception/ApiExceptionHandler.java` para respuestas JSON snake_case con `timestamp`, `status`, `error_code`, `message` y `path`.
-- [ ] T006 Crear `src/main/java/com/codecrafthub/service/CourseService.java` con carga inicial que cree `courses.json` como `{"next_id":1,"courses":[]}`, lectura Jackson, escritura temporal y movimiento de reemplazo, y secuencia `next_id` persistente.
-- [ ] T007 Crear `src/main/java/com/codecrafthub/controller/CourseController.java` con mapeo base `/api/courses`, negociación `application/json` y dependencia de `CourseService`.
+- [X] T003 [P] Crear `src/main/java/com/codecrafthub/model/CourseStatus.java` con identificadores Java en inglés y mapeo Jackson exacto para `Not Started`, `In Progress` y `Completed`.
+- [X] T004 Crear `src/main/java/com/codecrafthub/model/Course.java` con `id`, `name`, `description`, `targetDate`, `status` y `createdAt`; aplicar anotaciones Jackson para `target_date` y `created_at`, y validar literalmente: «nombre y descripción no pueden estar vacíos ni contener solo espacios», «fecha de calendario en formato `YYYY-MM-DD`» y estado «exactamente `Not Started`, `In Progress` o `Completed`».
+- [X] T005 Crear `src/main/java/com/codecrafthub/exception/CourseNotFoundException.java`, `src/main/java/com/codecrafthub/exception/StorageException.java` y `src/main/java/com/codecrafthub/exception/ApiExceptionHandler.java` para respuestas JSON snake_case con `timestamp`, `status`, `error_code`, `message` y `path`.
+- [X] T006 Crear `src/main/java/com/codecrafthub/service/CourseService.java` con carga inicial que cree `courses.json` como `{"next_id":1,"courses":[]}`, lectura Jackson, escritura temporal y movimiento de reemplazo, y secuencia `next_id` persistente.
+- [X] T007 Crear `src/main/java/com/codecrafthub/controller/CourseController.java` con mapeo base `/api/courses`, negociación `application/json` y dependencia de `CourseService`.
 
 **Punto de control**: La aplicación compila, inicia con un archivo de cursos válido y dispone de un
 formato único para errores.
@@ -65,14 +65,14 @@ comprobar con `GET /api/courses` que aparece con `id` 1 y `created_at`.
 
 ### Pruebas de la historia de usuario 1
 
-- [ ] T008 [P] [US1] Crear `src/test/java/com/codecrafthub/service/CourseServiceTest.java` con pruebas de creación, listado, `next_id` y persistencia en un directorio temporal.
-- [ ] T009 [P] [US1] Crear `src/test/java/com/codecrafthub/controller/CourseControllerIntegrationTest.java` con contratos de `POST /api/courses` y `GET /api/courses`, `201/200`, cuerpos snake_case y estados JSON exactos.
-- [ ] T010 [P] [US1] Añadir a `src/test/java/com/codecrafthub/controller/CourseControllerIntegrationTest.java` casos de campos obligatorios ausentes, texto en blanco, `target_date` inválido y estados distintos de `Not Started`, `In Progress` o `Completed`, esperando `400` y `error_code` `validation_error`.
+- [X] T008 [P] [US1] Crear `src/test/java/com/codecrafthub/service/CourseServiceTest.java` con pruebas de creación, listado, `next_id` y persistencia en un directorio temporal.
+- [X] T009 [P] [US1] Crear `src/test/java/com/codecrafthub/controller/CourseControllerIntegrationTest.java` con contratos de `POST /api/courses` y `GET /api/courses`, `201/200`, cuerpos snake_case y estados JSON exactos.
+- [X] T010 [P] [US1] Añadir a `src/test/java/com/codecrafthub/controller/CourseControllerIntegrationTest.java` casos de campos obligatorios ausentes, texto en blanco, `target_date` inválido y estados distintos de `Not Started`, `In Progress` o `Completed`, esperando `400` y `error_code` `validation_error`.
 
 ### Implementación de la historia de usuario 1
 
-- [ ] T011 [US1] Implementar en `src/main/java/com/codecrafthub/service/CourseService.java` la creación y listado, asignando identificador positivo consecutivo desde 1 y `createdAt` UTC, y persistiendo toda mutación.
-- [ ] T012 [US1] Implementar en `src/main/java/com/codecrafthub/controller/CourseController.java` `POST /api/courses` y `GET /api/courses`, incluyendo `Location` en la creación y validación de solicitudes.
+- [X] T011 [US1] Implementar en `src/main/java/com/codecrafthub/service/CourseService.java` la creación y listado, asignando identificador positivo consecutivo desde 1 y `createdAt` UTC, y persistiendo toda mutación.
+- [X] T012 [US1] Implementar en `src/main/java/com/codecrafthub/controller/CourseController.java` `POST /api/courses` y `GET /api/courses`, incluyendo `Location` en la creación y validación de solicitudes.
 - [ ] T013 [US1] Ejecutar y ajustar `src/test/java/com/codecrafthub/service/CourseServiceTest.java` y `src/test/java/com/codecrafthub/controller/CourseControllerIntegrationTest.java` hasta que prueben creación, lista y errores de validación.
 
 **Punto de control**: Se puede registrar y listar un curso sin depender de las historias P2 o P3.
@@ -90,13 +90,13 @@ alterar su identidad ni fecha de creación.
 
 ### Pruebas de la historia de usuario 2
 
-- [ ] T014 [P] [US2] Añadir a `src/test/java/com/codecrafthub/service/CourseServiceTest.java` pruebas de obtención, reemplazo y conservación de `id` y `createdAt`.
-- [ ] T015 [P] [US2] Añadir a `src/test/java/com/codecrafthub/controller/CourseControllerIntegrationTest.java` contratos de `GET /api/courses/{id}` y `PUT /api/courses/{id}`, con `200`, JSON snake_case y `404` con `course_not_found`.
+- [X] T014 [P] [US2] Añadir a `src/test/java/com/codecrafthub/service/CourseServiceTest.java` pruebas de obtención, reemplazo y conservación de `id` y `createdAt`.
+- [X] T015 [P] [US2] Añadir a `src/test/java/com/codecrafthub/controller/CourseControllerIntegrationTest.java` contratos de `GET /api/courses/{id}` y `PUT /api/courses/{id}`, con `200`, JSON snake_case y `404` con `course_not_found`.
 
 ### Implementación de la historia de usuario 2
 
-- [ ] T016 [US2] Implementar en `src/main/java/com/codecrafthub/service/CourseService.java` la búsqueda y reemplazo completo por identificador, preservando `id` y `createdAt` y lanzando `CourseNotFoundException` si no existe.
-- [ ] T017 [US2] Implementar en `src/main/java/com/codecrafthub/controller/CourseController.java` `GET /api/courses/{id}` y `PUT /api/courses/{id}`.
+- [X] T016 [US2] Implementar en `src/main/java/com/codecrafthub/service/CourseService.java` la búsqueda y reemplazo completo por identificador, preservando `id` y `createdAt` y lanzando `CourseNotFoundException` si no existe.
+- [X] T017 [US2] Implementar en `src/main/java/com/codecrafthub/controller/CourseController.java` `GET /api/courses/{id}` y `PUT /api/courses/{id}`.
 - [ ] T018 [US2] Ejecutar y ajustar `src/test/java/com/codecrafthub/service/CourseServiceTest.java` y `src/test/java/com/codecrafthub/controller/CourseControllerIntegrationTest.java` hasta validar obtención, actualización y recurso inexistente.
 
 **Punto de control**: Las operaciones de P1 y P2 funcionan y siguen siendo verificables de forma
@@ -114,13 +114,13 @@ internos.
 
 ### Pruebas de la historia de usuario 3
 
-- [ ] T019 [P] [US3] Añadir a `src/test/java/com/codecrafthub/service/CourseServiceTest.java` pruebas de eliminación, identificador inexistente, JSON persistido inválido y fallo de escritura usando un directorio temporal.
-- [ ] T020 [P] [US3] Añadir a `src/test/java/com/codecrafthub/controller/CourseControllerIntegrationTest.java` contratos de `DELETE /api/courses/{id}` para `204/404` y respuestas `500` con `error_code` `storage_error`.
+- [X] T019 [P] [US3] Añadir a `src/test/java/com/codecrafthub/service/CourseServiceTest.java` pruebas de eliminación, identificador inexistente, JSON persistido inválido y fallo de escritura usando un directorio temporal.
+- [X] T020 [P] [US3] Añadir a `src/test/java/com/codecrafthub/controller/CourseControllerIntegrationTest.java` contratos de `DELETE /api/courses/{id}` para `204/404` y respuestas `500` con `error_code` `storage_error`.
 
 ### Implementación de la historia de usuario 3
 
-- [ ] T021 [US3] Implementar en `src/main/java/com/codecrafthub/service/CourseService.java` la eliminación persistente y la conversión de errores de lectura/escritura/JSON en `StorageException`.
-- [ ] T022 [US3] Completar en `src/main/java/com/codecrafthub/exception/ApiExceptionHandler.java` el mapeo de `StorageException` a `500` sin detalles internos, y actualizar `src/main/java/com/codecrafthub/controller/CourseController.java` con `DELETE /api/courses/{id}` que devuelva `204 No Content`.
+- [X] T021 [US3] Implementar en `src/main/java/com/codecrafthub/service/CourseService.java` la eliminación persistente y la conversión de errores de lectura/escritura/JSON en `StorageException`.
+- [X] T022 [US3] Completar en `src/main/java/com/codecrafthub/exception/ApiExceptionHandler.java` el mapeo de `StorageException` a `500` sin detalles internos, y actualizar `src/main/java/com/codecrafthub/controller/CourseController.java` con `DELETE /api/courses/{id}` que devuelva `204 No Content`.
 - [ ] T023 [US3] Ejecutar y ajustar `src/test/java/com/codecrafthub/service/CourseServiceTest.java` y `src/test/java/com/codecrafthub/controller/CourseControllerIntegrationTest.java` hasta validar eliminación y todos los errores de almacenamiento.
 
 **Punto de control**: Las cinco operaciones del contrato están completas y los errores requeridos se
@@ -132,8 +132,8 @@ presentan en JSON consistente.
 
 **Propósito**: Verificar el comportamiento completo, claridad didáctica y reglas de la constitución.
 
-- [ ] T024 [P] Añadir comentarios didácticos en español y verificar que los identificadores del código estén en inglés en `src/main/java/com/codecrafthub/**/*.java`.
-- [ ] T025 [P] Revisar `README.md` o crear `README.md` con instrucciones de ejecución en español y ejemplos que remitan a `specs/001-course-crud-api/quickstart.md`.
+- [X] T024 [P] Añadir comentarios didácticos en español y verificar que los identificadores del código estén en inglés en `src/main/java/com/codecrafthub/**/*.java`.
+- [X] T025 [P] Revisar `README.md` o crear `README.md` con instrucciones de ejecución en español y ejemplos que remitan a `specs/001-course-crud-api/quickstart.md`.
 - [ ] T026 Ejecutar todos los escenarios de `specs/001-course-crud-api/quickstart.md` y corregir en `src/main/java/com/codecrafthub/` o `src/test/java/com/codecrafthub/` las diferencias encontradas.
 - [ ] T027 Ejecutar `mvn test` desde `pom.xml` y verificar manualmente que el reinicio preserva cursos y que `courses.json` no queda malformado tras una mutación.
 
