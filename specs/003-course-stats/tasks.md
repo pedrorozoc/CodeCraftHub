@@ -22,7 +22,7 @@ description: "Lista de tareas para implementar estadísticas de cursos"
 
 **Propósito**: Confirmar el punto de partida y las convenciones que reutilizará la funcionalidad.
 
-- [ ] T001 Verificar la lectura actual de `courses.json`, los tres valores de `CourseStatus` y la línea base de pruebas en `src/main/java/com/codecrafthub/service/CourseService.java`, `src/main/java/com/codecrafthub/model/CourseStatus.java` y `src/test/java/com/codecrafthub/`.
+- [X] T001 Verificar la lectura actual de `courses.json`, los tres valores de `CourseStatus` y la línea base de pruebas en `src/main/java/com/codecrafthub/service/CourseService.java`, `src/main/java/com/codecrafthub/model/CourseStatus.java` y `src/test/java/com/codecrafthub/`.
 
 ---
 
@@ -42,13 +42,13 @@ description: "Lista de tareas para implementar estadísticas de cursos"
 
 ### Pruebas para la historia de usuario 1
 
-- [ ] T002 [P] [US1] Añadir pruebas de agregación con los tres estados, estados ausentes y colección vacía en `src/test/java/com/codecrafthub/service/CourseServiceTest.java`; verificar que los tres conteos siempre existen, cada curso cuenta una vez y el total es la suma de las categorías.
-- [ ] T003 [P] [US1] Añadir pruebas MockMvc de `GET /api/courses/stats` en `src/test/java/com/codecrafthub/controller/CourseControllerIntegrationTest.java` para la respuesta `200` conforme a `specs/003-course-stats/contracts/course-stats-api.md`, la colección vacía, la ausencia de mutación y el error `storage_error`.
+- [X] T002 [P] [US1] Añadir pruebas de agregación con los tres estados, estados ausentes y colección vacía en `src/test/java/com/codecrafthub/service/CourseServiceTest.java`; verificar que los tres conteos siempre existen, cada curso cuenta una vez y el total es la suma de las categorías.
+- [X] T003 [P] [US1] Añadir pruebas MockMvc de `GET /api/courses/stats` en `src/test/java/com/codecrafthub/controller/CourseControllerIntegrationTest.java` para la respuesta `200` conforme a `specs/003-course-stats/contracts/course-stats-api.md`, la colección vacía, la ausencia de mutación y el error `storage_error`.
 
 ### Implementación para la historia de usuario 1
 
-- [ ] T004 [US1] Implementar en `src/main/java/com/codecrafthub/service/CourseService.java` una operación de solo lectura que agregue el catálogo actual, inicialice los conteos de `NOT_STARTED`, `IN_PROGRESS` y `COMPLETED` en cero, y garantice que el total sea la suma de los tres conteos sin escribir `courses.json`.
-- [ ] T005 [US1] Añadir `GET /api/courses/stats` a `src/main/java/com/codecrafthub/controller/CourseController.java`; delegar en la operación de servicio y serializar `total_courses` y `courses_by_status` con las etiquetas `Not Started`, `In Progress` y `Completed` establecidas en el contrato.
+- [X] T004 [US1] Implementar en `src/main/java/com/codecrafthub/service/CourseService.java` una operación de solo lectura que agregue el catálogo actual, inicialice los conteos de `NOT_STARTED`, `IN_PROGRESS` y `COMPLETED` en cero, y garantice que el total sea la suma de los tres conteos sin escribir `courses.json`.
+- [X] T005 [US1] Añadir `GET /api/courses/stats` a `src/main/java/com/codecrafthub/controller/CourseController.java`; delegar en la operación de servicio y serializar `total_courses` y `courses_by_status` con las etiquetas `Not Started`, `In Progress` y `Completed` establecidas en el contrato.
 
 **Punto de control**: La historia queda completa cuando las pruebas de T002 y T003 pasan y la respuesta satisface todos los ejemplos de [course-stats-api.md](contracts/course-stats-api.md).
 
@@ -58,8 +58,8 @@ description: "Lista de tareas para implementar estadísticas de cursos"
 
 **Propósito**: Confirmar la calidad del cambio y su guía de uso de extremo a extremo.
 
-- [ ] T006 Ejecutar `mvn test` desde `pom.xml` y resolver cualquier regresión en `src/test/java/com/codecrafthub/`.
-- [ ] T007 Ejecutar los escenarios de [quickstart.md](quickstart.md) contra `src/main/java/com/codecrafthub/controller/CourseController.java` y confirmar que la consulta no modifica los cursos.
+- [X] T006 Ejecutar `mvn test` desde `pom.xml` y resolver cualquier regresión en `src/test/java/com/codecrafthub/`.
+- [X] T007 Ejecutar los escenarios de [quickstart.md](quickstart.md) contra `src/main/java/com/codecrafthub/controller/CourseController.java` y confirmar que la consulta no modifica los cursos.
 
 ---
 

@@ -16,6 +16,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Map;
 
 /** Expone las cinco operaciones REST requeridas para los cursos. */
 @RestController
@@ -41,6 +42,11 @@ public class CourseController {
     @GetMapping
     public List<Course> findAll() {
         return courseService.findAll();
+    }
+
+    @GetMapping("/stats")
+    public Map<String, Object> getStatistics() {
+        return courseService.getStatistics();
     }
 
     @GetMapping("/{id}")

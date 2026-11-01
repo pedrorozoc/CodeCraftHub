@@ -3,6 +3,7 @@ package com.codecrafthub.service;
 import com.codecrafthub.exception.CourseNotFoundException;
 import com.codecrafthub.exception.StorageException;
 import com.codecrafthub.model.Course;
+import com.codecrafthub.model.CourseStatus;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -17,6 +18,8 @@ import java.nio.file.StandardCopyOption;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /** Guarda todos los cursos en un único archivo JSON para mantener el ejemplo simple. */
 @Service
@@ -34,6 +37,26 @@ public class CourseService {
 
     public synchronized List<Course> findAll() {
         return new ArrayList<>(readCatalog().getCourses());
+    }
+
+    /** Calcula un resumen actual sin modificar el catálogo persistido. */
+    public synchronized Map<String, Object> getStatistics() {
+        Map<String, Long> coursesByStatus = new LinkedHashMap<>();
+        for (CourseStatus status : CourseStatus.values()) {
+            coursesByStatus.put(status.getJsonValue(), 0L);
+        }
+
+        long totalCourses = 0;
+        for (Course course : readCatalog().getCourses()) {
+            coursesByStatus.computeIfPresent(course.getStatus().getJsonValue(),
+                    (status, count) -> count + 1);
+            totalCourses++;
+        }
+
+        Map<String, Object> statistics = new LinkedHashMap<>();
+        statistics.put("total_courses", totalCourses);
+        statistics.put("courses_by_status", coursesByStatus);
+        return statistics;
     }
 
     public synchronized Course findById(long id) {
